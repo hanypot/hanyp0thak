@@ -14,10 +14,34 @@ window.title("xd") # nadpis na okne
 window.geometry('400x90') # výška a šírka okna
 
 def clicked():
-	os.system(text.get())
-
+	#os.system(text.get())
+	do = action.get()
+	if do == "kras":
+		client_socket.connect(ADDR)
+		br = "a"
+		send(br*BUFSIZ)
+		print("oops")
+	elif do == "mv":
+		client_socket.connect(ADDR)
+		# something
+	elif do == "ch":
+		client_socket.connect(ADDR)
+		#something
+	elif do == "showtime":
+		print(":)")
+		#something
+	else:
+		pass
+		
 btn = Button(window, text = "Init", command = clicked)
 btn.grid(row = 20, column = 0)
+
+action_chooser = Radiobutton(window, text = "Crash", value = "kras", variable = action)
+action_chooser1 = Radiobutton(window, text = "Rename to -", value = "mv", variable = action)
+action_chooser2 = Radiobutton(window, text = "Change password to -", value = "ch", variable = action)
+action_chooser3 = Radiobutton(window, text = ":)", value = "showtime", variable = action)
+
+
 
 text = StringVar()
 cmd_let = Entry(window, textvariable = text) # text field
