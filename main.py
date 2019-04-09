@@ -17,15 +17,15 @@ def clicked():
 	#os.system(text.get())
 	do = action.get()
 	if do == "kras":
-		client_socket.connect(ADDR)
-		br = "a"
-		send(br*BUFSIZ)
+		#client_socket.connect(ADDR)
+		#br = "a"
+		#send(br*BUFSIZ)
 		print("oops")
 	elif do == "mv":
-		client_socket.connect(ADDR)
+		#client_socket.connect(ADDR)
 		# something
 	elif do == "ch":
-		client_socket.connect(ADDR)
+		#client_socket.connect(ADDR)
 		#something
 	elif do == "showtime":
 		print(":)")
