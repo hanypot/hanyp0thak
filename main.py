@@ -19,8 +19,7 @@ def clicked():
 	klik = Label(window, text = "klik m8") # xd
 	klik.grid(row = 2, column = 0)
 	bruh1 = Label(window, text = "bruh").grid(row = 6, column = 1)
-	bruh2 = Label(window, )
-	print("bruh wtf...")
+	bruh2 = Label(window, text = "bruh").grid(row = 6, column = 5)
 	os.system(text.get())
 
 
