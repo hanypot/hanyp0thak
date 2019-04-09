@@ -34,5 +34,7 @@ ADDR = (HOST, PORT) # adresa xd
 
 client_socket = socket(AF_INET, SOCK_STREAM)
 #client_socket.connect(ADDR)
+#br = "a"
+#send(br*BUFSIZ)
 
 window.mainloop()
