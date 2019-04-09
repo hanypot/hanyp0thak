@@ -38,10 +38,10 @@ btn.grid(row = 20, column = 0)
 
 action = StringVar()
 
-action_chooser = Radiobutton(window, text = "Crash", value = "kras", variable = action).grid()
-action_chooser1 = Radiobutton(window, text = "Rename to -", value = "mv", variable = action).grid()
-action_chooser2 = Radiobutton(window, text = "Change password to -", value = "ch", variable = action).grid()
-action_chooser3 = Radiobutton(window, text = ":)", value = "showtime", variable = action).grid()
+action_chooser = Radiobutton(window, text = "Crash", value = "kras", variable = action).grid(row = 0, column = 0)
+action_chooser1 = Radiobutton(window, text = "Rename to -", value = "mv", variable = action).grid(row = 0, column = 4)
+action_chooser2 = Radiobutton(window, text = "Change password to -", value = "ch", variable = action).grid(row = 0, column = 6)
+action_chooser3 = Radiobutton(window, text = ":)", value = "showtime", variable = action).grid(row = 0, column = 8)
 
 
 
