@@ -11,7 +11,7 @@ TODO
 """
 window = Tk() # vytváram okno
 window.title("xd") # nadpis na okne
-window.geometry('400x100') # výška a šírka okna
+window.geometry('400x90') # výška a šírka okna
 
 def clicked():
 	os.system(text.get())
