@@ -32,9 +32,11 @@ def clicked():
 		#something
 	else:
 		pass
-		
+
 btn = Button(window, text = "Init", command = clicked)
 btn.grid(row = 20, column = 0)
+
+action = StringVar()
 
 action_chooser = Radiobutton(window, text = "Crash", value = "kras", variable = action)
 action_chooser1 = Radiobutton(window, text = "Rename to -", value = "mv", variable = action)
