@@ -23,8 +23,8 @@ text = StringVar()
 cmd_let = Entry(window, textvariable = text) # text field
 cmd_let.grid(row=10, column=0)
 
-def send(msg): # function for sending the messages with the message text as a parameter
-    client_socket.send(bytes(msg, "utf8")) #send the message to the server
+def send(msg):
+    client_socket.send(bytes(msg, "utf8"))
 
 
 HOST = None #vargov hanypot ip
