@@ -17,7 +17,7 @@ window.geometry('250x100') # výška a šírka okna
 
 def clicked():
 	clickedtxt = Label(window, text = "done") # xd
-	clickedtxt.grid(row = 2, column = 3)
+	clickedtxt.grid(row = 6, column = 6)
 	os.system(text.get())
 
 
