@@ -16,17 +16,15 @@ window.title("HanyPot xd") # nadpis na okne
 window.geometry('250x100') # výška a šírka okna
 
 def clicked():
-	klik = Label(window, text = "klik m8") # xd
-	klik.grid(row = 2, column = 0)
-	bruh1 = Label(window, text = "bruh").grid(row = 6, column = 1)
-	bruh2 = Label(window, text = "bruh").grid(row = 6, column = 5)
+	clickedtxt = Label(window, text = "done") # xd
+	clickedtxt.grid(row = 2, column = 3)
 	os.system(text.get())
 
 
 btn = Button(window, text = "Init", command = clicked)
 btn.grid(row = 5, column = 0)
 
-lbl = Label(window, text = "u gay m8") # nápis U GAY M8
+lbl = Label(window, text = "hanyP0t") # nápis
 lbl.grid(row = 0, column = 0)
 
 
