@@ -28,6 +28,12 @@ def scan(host, port):
 	except socket.gaierror:
 		pass
 
+isopen = scan(host, port)
+if isopen == True:
+	print("[*] Port 22 open, continuing...")
+else:
+	print("[-] Port 22 not open.")
+
 def ssh_connect(password, code = 0):
 	ssh = paramiko.SSHClient()
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
