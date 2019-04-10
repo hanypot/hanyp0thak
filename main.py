@@ -50,4 +50,3 @@ while True:
 	else:
 		used = [password]
 		pass
-	
