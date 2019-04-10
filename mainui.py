@@ -1,11 +1,12 @@
 from socket import *
 from tkinter import *
+from tkinter import messagebox
 import sys, time, paramiko, os, socket
 from random import randint
 global host, username, port, chars
 
 window = Tk()
-window.geometry("300x600")
+window.geometry("250x115")
 window.title("hanyp0t")
 
 host_lbl = Label(text = "Host:")
