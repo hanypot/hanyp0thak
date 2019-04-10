@@ -1,44 +1,43 @@
-from socket import *
-import sys, time
+import socket
+import sys
 from datetime import datetime
 
-host = ''
-max_port = 0
-min_port = 5000
 
-def scan_host(host, port, r_code = 1):
-	try:
-		s = socket(AF_INET, SOCK_STREAM)
-		code = s.connect_ex((host, port))
+host = input("[*] Enter a remote host to scan: ")
+hostIP  = socket.gethostbyname(host)
 
-		if code == 0:
-			r_code = code
-		s.close
-	except Exception:
-		pass
-	return(r_code)
+print("-" * 60)
+print("[*] Please wait, scanning remote host", hostIP)
+print("-" * 60)
+
+
+t1 = datetime.now()
 
 try:
-	host = input("[*] Target host address: ")
+    for port in range(1,1025):  
+        sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        result = sock.connect_ex((hostIP, port))
+        if result == 0:
+            print("Port {}: 	 Open".format(port))
+        sock.close()
+
 except KeyboardInterrupt:
-	print("\n\n[-] User requested an interrupt")
-	sys.exit(1)
+    print("\n[-] KeyboardInterrupt")
+    sys.exit()
 
-hostip = gethostbyname(host)
-print("\n[*] Host %s IP: %s" % (host, hostip))
-print("[*] Scanning Started at %s...\n" % (time.strftime("%H:%M:%S")))
-start_time = datetime.now()
+except socket.gaierror:
+    print('[-] Hostname could not be resolved. Exiting...')
+    sys.exit()
 
-for port in range(min_port, max_port):
-	try:
-		response = scan_host(host, port)
+except socket.error:
+    print("[-] Couldn't connect to server")
+    sys.exit()
 
-		if response == 0:
-			print("[*] Port %d: Open" % (port))
-	except Exception:
-		pass
+# Checking the time again
+t2 = datetime.now()
 
-stop_time = datetime.now()
-total_time_duration = stop_time - start_time
-print("\n[*] Scanning finished at: %s...\n" % (time.strftime("%H:%M:%S")))
-print("[*] Scanning duration: %s ..." % (total_time_duration))
+# Calculates the difference of time, to see how long it took to run the script
+total =  t2 - t1
+
+# Printing the information to screen
+print('[*] Scanning Completed in: ', total)
